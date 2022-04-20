@@ -1,0 +1,23 @@
+.bg {
+  @include gen($colors, background);
+  @include gen-haf($colors, background);
+}
+
+[class="dark"] {
+  .dark-bg {
+    @include gen($colors, background);
+    @include gen-haf($colors, background);
+  }
+}
+
+.color {
+  @include gen($colors, color);
+  @include gen-haf($colors, color);
+}
+
+[class="dark"] {
+  .dark-color {
+    @include gen($colors, color);
+    @include gen-haf($colors, color);
+  }
+}

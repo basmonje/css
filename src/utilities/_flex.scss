@@ -1,0 +1,92 @@
+$flex-direction: (
+  col: column,
+  col-reverse: column-reverse,
+  row: row,
+  row-reverse: row-reverse,
+);
+
+$flex-wrap: (
+  wrap: wrap,
+  wrap-reverse: wrap-reverse,
+  nowrap: nowrap,
+);
+
+$flex-grow: (
+  grow: 1,
+  nogrow: 0,
+);
+
+$flex-shrink: (
+  shrink: 1,
+  noshrink: 0,
+);
+
+.flex {
+  display: flex;
+
+  @include gen($flex-direction, flex-direction);
+  @include gen($flex-wrap, flex-wrap);
+  @include gen($flex-grow, flex-grow);
+  @include gen($flex-shrink, flex-shrink);
+
+  @include mediaquerys {
+    @include gen($flex-direction, flex-direction);
+  }
+
+  &-1 {
+    flex: 1 1 0%;
+  }
+
+  &-auto {
+    flex: 1 1 auto;
+  }
+
+  &-initial {
+    flex: 0 1 auto;
+  }
+
+  &-none {
+    flex: none;
+  }
+}
+
+$align-items: (
+  center: center,
+  start: flex-start,
+  end: flex-end,
+  stretch: stretch,
+);
+
+$justify-content: (
+  center: center,
+  start: flex-start,
+  end: flex-end,
+  stretch: stretch,
+  around: space-around,
+  between: space-between,
+  evenly: space-evenly,
+);
+
+.items {
+  @include gen($align-items, align-items);
+
+  @include mediaquerys {
+    @include gen($align-items, align-items);
+  }
+}
+
+.content {
+  @include gen($justify-content, justify-content);
+
+  @include mediaquerys {
+    @include gen($justify-content, justify-content);
+  }
+}
+
+.gap {
+  @include gen($sizing-scale, gap);
+
+  @include mediaquerys {
+    @include gen($sizing-scale, gap);
+  }
+}

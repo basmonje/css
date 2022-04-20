@@ -1,0 +1,33 @@
+@mixin gen($map, $atributo) {
+  @each $nombre, $valor in $map {
+    &-#{$nombre} {
+      #{$atributo}: $valor;
+    }
+  }
+}
+
+@mixin gen-haf($map, $atributo) {
+  @each $nombre, $valor in $map {
+    &-hover-#{$nombre}:hover {
+      #{$atributo}: $valor;
+    }
+
+    &-active-#{$nombre}:active {
+      #{$atributo}: $valor;
+    }
+
+    &-focus-#{$nombre}:focus {
+      #{$atributo}: $valor;
+    }
+  }
+}
+
+@mixin mediaquerys {
+  @each $name, $value in $breakpoints {
+    &-#{$name} {
+      @media screen and (min-width: $value) {
+        @content;
+      }
+    }
+  }
+}

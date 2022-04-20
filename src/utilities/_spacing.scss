@@ -1,0 +1,72 @@
+$spacing-options: (
+  t: top,
+  b: bottom,
+  r: right,
+  l: left,
+);
+
+@mixin gen-spacing-direction($type) {
+  @each $name, $value in $spacing-options {
+    &#{$name} {
+      @include gen($spacing, #{$type}-#{$value});
+
+      @include mediaquerys {
+        @include gen($spacing, #{$type}-#{$value});
+      }
+    }
+  }
+
+  &x {
+    @each $name, $value in $spacing {
+      &-#{$name} {
+        #{$type}-left: $value;
+        #{$type}-right: $value;
+      }
+
+      @include mediaquerys {
+        &-#{$name} {
+          #{$type}-left: $value;
+          #{$type}-right: $value;
+        }
+      }
+    }
+  }
+
+  &y {
+    @each $name, $value in $spacing {
+      &-#{$name} {
+        #{$type}-top: $value;
+        #{$type}-bottom: $value;
+      }
+
+      @include mediaquerys {
+        &-#{$name} {
+          #{$type}-top: $value;
+          #{$type}-bottom: $value;
+        }
+      }
+    }
+  }
+}
+
+.p {
+  @include gen($spacing, padding);
+  @include gen-spacing-direction(padding);
+
+  @include mediaquerys {
+    @include gen($spacing, padding);
+  }
+}
+
+.m {
+  @include gen($spacing, margin);
+  @include gen-spacing-direction(margin);
+
+  @include mediaquerys {
+    @include gen($spacing, margin);
+  }
+}
+
+.radius {
+  @include gen($spacing, border-radius);
+}

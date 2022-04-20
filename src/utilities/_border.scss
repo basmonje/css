@@ -1,0 +1,79 @@
+$border-style: (
+  dashed: dashed,
+  dotted: dotted,
+  double: double,
+  groove: groove,
+  hidden: hidden,
+  inherit: inherit,
+  initial: initial,
+  solid: solid,
+  none: none,
+);
+
+$border-direction: (
+  t: top,
+  b: bottom,
+  r: right,
+  l: left,
+);
+
+@mixin borderDirection($direction) {
+  @for $i from 0 through 9 {
+    &-#{$i} {
+      border-#{$direction}-width: #{$i}px;
+      border-#{$direction}-style: solid;
+    }
+  }
+}
+
+.b {
+  @include gen($colors, border-color);
+
+  @for $i from 0 through 9 {
+    &-#{$i} {
+      border-width: #{$i}px;
+    }
+  }
+
+  @each $nam, $var in $border-style {
+    &-#{$nam} {
+      border-style: $var;
+    }
+  }
+
+  @each $name, $var in $border-direction {
+    &#{$name} {
+      @include borderDirection($var);
+    }
+  }
+}
+
+[class="dark"] {
+  .dark-b {
+    @include gen($colors, border-color);
+  }
+}
+
+.outline {
+  @each $name, $var in $colors {
+    &-#{$name} {
+      &:focus {
+        outline: 2px solid #{$var};
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+[class="dark"] {
+  .dark-outline {
+    @each $name, $var in $colors {
+      &-#{$name} {
+        &:focus {
+          outline: 2px solid #{$var};
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+}

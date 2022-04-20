@@ -1,0 +1,13 @@
+.button {
+  border: none;
+  cursor: pointer;
+}
+
+.button-disabled {
+  cursor: not-allowed;
+}
+
+.button-icon-square {
+  width: 40px;
+  height: 40px;
+}

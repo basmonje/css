@@ -1,0 +1,104 @@
+$overflows: (
+  hidden: hidden,
+  scroll: scroll,
+  visible: visible,
+  auto: auto,
+  inherit: inherit,
+  initial: initial,
+);
+
+@mixin overflow-dire {
+  &-x {
+    @include gen($overflows, overflow-x);
+  }
+
+  &-y {
+    @include gen($overflows, overflow-y);
+  }
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.static {
+  position: static;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.overflow {
+  @include gen($overflows, overflow);
+  @include overflow-dire;
+
+  @include mediaquerys {
+    @include gen($overflows, overflow);
+    @include overflow-dire;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+
+  @include gen($breakpoints, max-width);
+}
+
+.scrollbar {
+  &-thin::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &-thin::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+    border: 4px solid transparent;
+    background-clip: content-box;
+  }
+
+  &-thin::-webkit-scrollbar-thumb {
+    background: rgb(70, 70, 70);
+    border: 1px solid rgb(0, 0, 0);
+  }
+
+  &-thin {
+    scrollbar-width: thin;
+  }
+
+  &-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  &-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+$set-display: (
+  none: none,
+  flex: flex,
+  grid: grid,
+  block: block,
+  contents: contents,
+  inline: inline,
+  inline-block: inline-block,
+  inline-flex: inline-flex,
+);
+
+.display {
+  @include gen($set-display, display);
+
+  @include mediaquerys {
+    @include gen($set-display, display);
+  }
+}
