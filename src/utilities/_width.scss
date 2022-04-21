@@ -1,21 +1,46 @@
-$overflows: (
-  hidden: hidden,
-  scroll: scroll,
-  visible: visible,
-  auto: auto,
-  inherit: inherit,
-  initial: initial,
+// Widths and Height
+
+$measures: (
+  full: 100%,
+  view: 100vh,
+  75p: 75%,
+  50p: 50%,
+  25p: 25%,
 );
 
-@mixin overflow-dire {
-  &-x {
-    @include gen($overflows, overflow-x);
-  }
+.w {
+  @include gen($measures, width);
 
-  &-y {
-    @include gen($overflows, overflow-y);
+  @include mediaquerys {
+    @include gen($measures, width);
   }
 }
+
+.h {
+  @include gen($measures, height);
+
+  @include mediaquerys {
+    @include gen($measures, height);
+  }
+}
+
+.min-w {
+  @include gen($measures, min-width);
+
+  @include mediaquerys {
+    @include gen($measures, min-width);
+  }
+}
+
+.min-h {
+  @include gen($measures, min-height);
+
+  @include mediaquerys {
+    @include gen($measures, min-height);
+  }
+}
+
+// Positions
 
 .absolute {
   position: absolute;
@@ -37,15 +62,38 @@ $overflows: (
   position: sticky;
 }
 
+// Overflows
+
+$overflows: (
+  hidden: hidden,
+  scroll: scroll,
+  visible: visible,
+  auto: auto,
+  inherit: inherit,
+  initial: initial,
+);
+
+@mixin overflow-directions {
+  &-x {
+    @include gen($overflows, overflow-x);
+  }
+
+  &-y {
+    @include gen($overflows, overflow-y);
+  }
+}
+
 .overflow {
   @include gen($overflows, overflow);
-  @include overflow-dire;
+  @include overflow-directions;
 
   @include mediaquerys {
     @include gen($overflows, overflow);
-    @include overflow-dire;
+    @include overflow-directions;
   }
 }
+
+// Container
 
 .container {
   width: 100%;
@@ -53,6 +101,8 @@ $overflows: (
 
   @include gen($breakpoints, max-width);
 }
+
+// Scrollbar
 
 .scrollbar {
   &-thin::-webkit-scrollbar {
@@ -83,6 +133,8 @@ $overflows: (
     scrollbar-width: none;
   }
 }
+
+// Display
 
 $set-display: (
   none: none,
