@@ -1,0 +1,14 @@
+{
+  "Generate": {
+    "scope": "scss",
+    "prefix": "gen",
+    "body": ["@include gen($$1, $2);"],
+    "description": "Generate Mixin"
+  },
+  "Media Query": {
+    "scope": "scss",
+    "prefix": "mqry",
+    "body": ["@include mediaquerys {", "\t$0", "}"],
+    "description": "Generate Mixin"
+  }
+}
