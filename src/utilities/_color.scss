@@ -1,3 +1,5 @@
+// Background
+
 .bg {
   @include gen($colors, background);
   @include gen-haf($colors, background);
@@ -10,6 +12,8 @@
   }
 }
 
+// Color Text
+
 .color {
   @include gen($colors, color);
   @include gen-haf($colors, color);
@@ -19,5 +23,31 @@
   .dark-color {
     @include gen($colors, color);
     @include gen-haf($colors, color);
+  }
+}
+
+// Outline 
+
+.outline {
+  @each $name, $var in $colors {
+    &-#{$name} {
+      &:focus {
+        outline: 2px solid #{$var};
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+[class="dark"] {
+  .dark-outline {
+    @each $name, $var in $colors {
+      &-#{$name} {
+        &:focus {
+          outline: 2px solid #{$var};
+          outline-offset: 2px;
+        }
+      }
+    }
   }
 }

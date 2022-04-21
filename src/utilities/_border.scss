@@ -1,3 +1,6 @@
+// Borders
+// Under construction
+
 $border-style: (
   dashed: dashed,
   dotted: dotted,
@@ -54,26 +57,3 @@ $border-direction: (
   }
 }
 
-.outline {
-  @each $name, $var in $colors {
-    &-#{$name} {
-      &:focus {
-        outline: 2px solid #{$var};
-        outline-offset: 2px;
-      }
-    }
-  }
-}
-
-[class="dark"] {
-  .dark-outline {
-    @each $name, $var in $colors {
-      &-#{$name} {
-        &:focus {
-          outline: 2px solid #{$var};
-          outline-offset: 2px;
-        }
-      }
-    }
-  }
-}
