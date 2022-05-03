@@ -13,7 +13,7 @@
     }
 
     &-active-#{$nombre}:active {
-      #{$atributo}: $valor;
+      #{$atributo}: $valor !important;
     }
 
     &-focus-#{$nombre}:focus {
