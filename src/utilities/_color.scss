@@ -26,14 +26,14 @@
   }
 }
 
-// Outline 
+// Outline
 
 .outline {
   @each $name, $var in $colors {
     &-#{$name} {
       &:focus {
         outline: 2px solid #{$var};
-        outline-offset: 2px;
+        outline-offset: 1px;
       }
     }
   }
@@ -45,7 +45,7 @@
       &-#{$name} {
         &:focus {
           outline: 2px solid #{$var};
-          outline-offset: 2px;
+          outline-offset: 1px;
         }
       }
     }
