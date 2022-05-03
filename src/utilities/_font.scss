@@ -121,6 +121,10 @@ $font-sizes: (
   word-wrap: break-word;
 }
 
+.space-nowrap {
+  white-space: nowrap;
+}
+
 .decoration-none {
   text-decoration: none;
 }
