@@ -1,0 +1,27 @@
+.box {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  transform: 0.5s;
+  padding: 0;
+  background-color: $-bg-gray-200;
+  box-shadow: -7.829px 11.607px 21px 0px rgba(25, 42, 70, 0);
+
+  &-header {
+    display: block;
+    padding: 1.5rem;
+    position: relative;
+    border-bottom: 1px solid $-bg-primary-100;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  &-body {
+    padding: 1.5rem;
+    flex: 1 1 auto;
+    border-radius: 5px;
+  }
+}

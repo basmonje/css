@@ -3,11 +3,218 @@
   cursor: pointer;
 }
 
-.button-disabled {
+.disabled {
   cursor: not-allowed;
 }
 
 .button-icon-square {
   width: 40px;
   height: 40px;
+}
+
+$buttonsColorsDefault: (
+  "white": (
+    color: $-bg-dark,
+    background: $-bg-white,
+    backgroundHover: $-bg-white-600,
+    backgroundActive: $-bg-white-800,
+    backgroundDisabled: $-bg-white-300,
+  ),
+  "accent": (
+    color: $-bg-white,
+    background: $-bg-red-500,
+    backgroundHover: $-bg-red-600,
+    backgroundActive: $-bg-red-800,
+    backgroundDisabled: $-bg-red-300,
+  ),
+  "primary": (
+    color: $-bg-white,
+    background: $-bg-primary-500,
+    backgroundHover: $-bg-primary-600,
+    backgroundActive: $-bg-primary-800,
+    backgroundDisabled: $-bg-primary-300,
+  ),
+  "secondary": (
+    color: $-bg-white,
+    background: $-bg-secondary-500,
+    backgroundHover: $-bg-secondary-600,
+    backgroundActive: $-bg-secondary-800,
+    backgroundDisabled: $-bg-secondary-300,
+  ),
+  "dark": (
+    color: $-bg-white,
+    background: $-bg-dark,
+    backgroundHover: $-bg-black-600,
+    backgroundActive: $-bg-black-800,
+    backgroundDisabled: $-bg-black-300,
+  ),
+);
+
+$buttonsColorOutline: (
+  "accent": (
+    color: $-bg-red-500,
+    backgroundHover: $-bg-red-600,
+    backgroundActive: $-bg-red-800,
+    backgroundDisabled: $-bg-red-300,
+  ),
+  "primary": (
+    color: $-bg-primary-500,
+    backgroundHover: $-bg-primary-600,
+    backgroundActive: $-bg-primary-800,
+    backgroundDisabled: $-bg-primary-300,
+  ),
+  "secondary": (
+    color: $-bg-secondary-500,
+    backgroundHover: $-bg-secondary-600,
+    backgroundActive: $-bg-secondary-800,
+    backgroundDisabled: $-bg-secondary-300,
+  ),
+  "dark": (
+    color: $-bg-dark,
+    backgroundHover: $-bg-black-600,
+    backgroundActive: $-bg-black-800,
+    backgroundDisabled: $-bg-black-300,
+  ),
+);
+
+@mixin getButtonColor() {
+  @each $name, $value in $buttonsColorsDefault {
+    &-#{$name} {
+      background-color: map-get($value, "background");
+      border-color: map-get($value, "background");
+      box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.15),
+        0 1px 1px rgba(39, 44, 51, 0.075);
+      color: map-get($value, "color");
+
+      &:hover {
+        background-color: map-get($value, "backgroundHover");
+        border-color: map-get($value, "backgroundHover");
+      }
+
+      &:active {
+        background-color: map-get($value, "backgroundActive");
+        border-color: map-get($value, "backgroundActive");
+      }
+
+      &:disabled {
+        background-color: map-get($value, "backgroundDisabled");
+        border-color: map-get($value, "backgroundDisabled");
+      }
+    }
+  }
+}
+
+@mixin getButtonColorOutline() {
+  @each $name, $value in $buttonsColorOutline {
+    &-#{$name} {
+      background: transparent;
+      color: map-get($value, "color");
+      border: 1px solid map-get($value, "color");
+
+      &:hover {
+        color: $-bg-white;
+        background-color: map-get($value, "backgroundHover");
+        border-color: map-get($value, "backgroundHover");
+      }
+
+      &:active {
+        background-color: map-get($value, "backgroundActive");
+        border-color: map-get($value, "backgroundActive");
+      }
+
+      &:disabled {
+        background: transparent;
+        color: map-get($value, "backgroundDisabled");
+        border: 1px solid map-get($value, "backgroundDisabled");
+      }
+    }
+  }
+}
+
+.btn {
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  vertical-align: middle;
+  user-select: none;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  @include getButtonColor();
+
+  > .disabled {
+    cursor: not-allowed;
+  }
+
+  &-outline {
+    @include getButtonColorOutline();
+  }
+
+  &-rounded {
+    border-radius: 100px;
+  }
+
+  &-sm {
+    padding: 0.25rem 0.5rem;
+    border-radius: 2rem;
+    font-size: 0.7109375rem;
+    line-height: 1.5;
+  }
+
+  &-lg {
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.21875rem;
+    line-height: 1.75;
+  }
+
+  &-block {
+    display: block;
+    width: 100%;
+  }
+
+  &-group {
+    display: inline-flex;
+
+    .btn {
+      position: relative;
+      flex: 1 1 auto;
+    }
+  }
+
+  &-group > .btn:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-group > .btn:not(:first-child),
+  .btn-group > .btn:not(:last-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.button-list > .btn {
+  margin-left: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.btn-link {
+  background: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
