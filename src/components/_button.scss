@@ -12,6 +12,12 @@
   height: 40px;
 }
 
+.btn-pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 $buttonsColorsDefault: (
   "white": (
     color: $-bg-dark,
