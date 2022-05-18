@@ -1,24 +1,22 @@
-.button {
-  border: none;
-  cursor: pointer;
-}
+/*
+  * _button.scss
+  *
+  * The classic button, in different colors, sizes, and states.
+  * 
+  * Maps
+  * - Colors default: $buttons-colors-default
+  * - Colors outline: $buttons-color-outline
+  *
+  * Mixins
+  * - Get colors default: @include getButtonColors()
+  * - Get colors outline: @include getButtonColors()
+  *
+  * Styles
+  * - Button: .btn
+  * - Old button: .button (deprecated)
+*/
 
-.disabled {
-  cursor: not-allowed;
-}
-
-.button-icon-square {
-  width: 40px;
-  height: 40px;
-}
-
-.btn-pointer {
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-$buttonsColorsDefault: (
+$buttons-colors-default: (
   "white": (
     color: $-bg-dark,
     background: $-bg-white,
@@ -56,7 +54,7 @@ $buttonsColorsDefault: (
   ),
 );
 
-$buttonsColorOutline: (
+$buttons-color-outline: (
   "accent": (
     color: $-bg-red-500,
     backgroundHover: $-bg-red-600,
@@ -83,8 +81,8 @@ $buttonsColorOutline: (
   ),
 );
 
-@mixin getButtonColor() {
-  @each $name, $value in $buttonsColorsDefault {
+@mixin getButtonColors() {
+  @each $name, $value in $buttons-colors-default {
     &-#{$name} {
       background-color: map-get($value, "background");
       border-color: map-get($value, "background");
@@ -111,7 +109,7 @@ $buttonsColorOutline: (
 }
 
 @mixin getButtonColorOutline() {
-  @each $name, $value in $buttonsColorOutline {
+  @each $name, $value in $buttons-color-outline {
     &-#{$name} {
       background: transparent;
       color: map-get($value, "color");
@@ -154,7 +152,7 @@ $buttonsColorOutline: (
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  @include getButtonColor();
+  @include getButtonColors();
 
   > .disabled {
     cursor: not-allowed;
@@ -206,15 +204,20 @@ $buttonsColorOutline: (
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-}
 
-.btn:not(:disabled):not(.disabled) {
-  cursor: pointer;
+  &-pointer {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
 }
 
 .button-list > .btn {
-  margin-left: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-right: 0.5rem;
 }
 
 .btn-link {
@@ -222,5 +225,20 @@ $buttonsColorOutline: (
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+// Deprecated
+.button {
+  border: none;
+  cursor: pointer;
+
+  .disabled {
+    cursor: not-allowed;
+  }
+
+  &-icon-square {
+    width: 40px;
+    height: 40px;
   }
 }
