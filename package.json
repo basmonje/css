@@ -1,6 +1,6 @@
 {
   "name": "@basmonje/css",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "CSS framework for personal works",
   "main": "lib/index.css",
   "files": [
@@ -8,15 +8,16 @@
   ],
   "scripts": {
     "watch": "sass -w src/index.scss lib/index.css --style compressed",
-    "build": "sass src/index.scss lib/index.css --style compressed"
+    "build": "npm run minify",
+    "minify": "sass src/index.scss lib/index.css --style compressed"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/basmonje/css.git"
   },
   "keywords": [
-    "css",
-    "scss"
+    "scss",
+    "framework"
   ],
   "author": "basmonje <devmonje@gmail.com>",
   "license": "MIT",
