@@ -1,22 +1,26 @@
-/*------------------------------------*\
-    @basmonje/css
-\*------------------------------------*/
+/** 
+  @basmonje/css
 
-// settings
-@import "./settings/global";
-// generic
-@import "./generic/reset";
-// tools
-@import "./tools/mixins";
-// utilities
-@import "./utilities/color";
-@import "./utilities/flex";
-@import "./utilities/grid";
-@import "./utilities/font";
-@import "./utilities/width";
-@import "./utilities/border";
-@import "./utilities/spacing";
-// Components
+  This file determines the entry point of all scss files
+*/
+
+/** Settings*/
+@import "./settings";
+
+/** Generic */
+@import "./config/reset";
+@import "./config/mixins";
+
+/** Utilities */
+@import "./utils/color";
+@import "./utils/flex";
+@import "./utils/grid";
+@import "./utils/font";
+@import "./utils/width";
+@import "./utils/border";
+@import "./utils/spacing";
+
+/** Components */
 @import "./components/button";
 @import "./components/forms";
 @import "./components/card";

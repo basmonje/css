@@ -1,4 +1,15 @@
-$flex-direction: (
+/**
+  * _flex.scss
+  *
+  * It is used to set a length to an html element and position them by columns or rows 
+  *
+  * Maps
+  * - Flex directions: $flex-directions
+  * - Flex wrap: $flex-wrap
+  * - Flex grow: $flex-grow
+  * - Flex shrink: $flex-shrink
+*/
+$flex-directions: (
   col: column,
   col-reverse: column-reverse,
   row: row,
@@ -24,13 +35,13 @@ $flex-shrink: (
 .flex {
   display: flex;
 
-  @include gen($flex-direction, flex-direction);
+  @include gen($flex-directions, flex-direction);
   @include gen($flex-wrap, flex-wrap);
   @include gen($flex-grow, flex-grow);
   @include gen($flex-shrink, flex-shrink);
 
-  @include mediaquerys {
-    @include gen($flex-direction, flex-direction);
+  @include getMediaQuerys {
+    @include gen($flex-directions, flex-direction);
   }
 
   &-1 {
@@ -70,7 +81,7 @@ $justify-content: (
 .items {
   @include gen($align-items, align-items);
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     @include gen($align-items, align-items);
   }
 }
@@ -78,7 +89,7 @@ $justify-content: (
 .content {
   @include gen($justify-content, justify-content);
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     @include gen($justify-content, justify-content);
   }
 }
@@ -86,7 +97,7 @@ $justify-content: (
 .gap {
   @include gen($sizing-scale, gap);
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     @include gen($sizing-scale, gap);
   }
 }

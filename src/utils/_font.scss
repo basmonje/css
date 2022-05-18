@@ -1,3 +1,14 @@
+/**
+  * _font.scss
+  *
+  * Maps
+  * Text align: $text-align
+  * Font sizes: $font-sizes
+  * User select: $user-select
+  *
+  * Mixins
+  * Get font sizes: @include get-font-sizes()
+*/
 $text-align: (
   center: center,
   end: end,
@@ -102,7 +113,15 @@ $font-sizes: (
   ),
 );
 
-@mixin gen-font-sizes() {
+$user-select: (
+  none: none,
+  auto: auto,
+  text: text,
+  contain: contain,
+  all: all,
+);
+
+@mixin get-font-sizes() {
   @each $nombre, $valor in $font-sizes {
     &-#{$nombre} {
       font-size: map-get($valor, "font-size");
@@ -115,11 +134,11 @@ $font-sizes: (
 
 .text {
   @include gen($text-align, text-align);
-  @include gen-font-sizes();
+  @include get-font-sizes();
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     @include gen($text-align, text-align);
-    @include gen-font-sizes();
+    @include get-font-sizes();
   }
 }
 
@@ -134,14 +153,6 @@ $font-sizes: (
 .decoration-none {
   text-decoration: none;
 }
-
-$user-select: (
-  none: none,
-  auto: auto,
-  text: text,
-  contain: contain,
-  all: all,
-);
 
 .select {
   @include gen($user-select, user-select);

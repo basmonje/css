@@ -1,3 +1,8 @@
+/**
+  * _grid.scss
+  *
+*/
+
 $grid-columns: 12 !default;
 
 $grid: (
@@ -34,7 +39,7 @@ $grid-span: (
   row-span: grid-row,
 );
 
-@mixin gen-grid-col($templated) {
+@mixin get-grid-cols($templated) {
   @for $i from 1 through $grid-columns {
     &-#{$i} {
       #{$templated}: repeat($i, minmax(0, 1fr));
@@ -42,7 +47,7 @@ $grid-span: (
   }
 }
 
-@mixin gen-grid-span {
+@mixin get-grid-spans {
   @each $name, $value in $grid-span {
     &-#{$name} {
       @for $i from 1 through $grid-columns {
@@ -51,7 +56,7 @@ $grid-span: (
         }
       }
 
-      @include mediaquerys {
+      @include getMediaQuerys {
         @for $i from 1 through $grid-columns {
           &-#{$i} {
             #{$value}: span $i;
@@ -66,22 +71,22 @@ $grid-span: (
   display: grid;
 
   &-cols {
-    @include gen-grid-col(grid-template-columns);
+    @include get-grid-cols(grid-template-columns);
   }
 
   &-rows {
-    @include gen-grid-col(grid-template-rows);
+    @include get-grid-cols(grid-template-rows);
   }
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     &-cols {
-      @include gen-grid-col(grid-template-columns);
+      @include get-grid-cols(grid-template-columns);
     }
 
     &-rows {
-      @include gen-grid-col(grid-template-rows);
+      @include get-grid-cols(grid-template-rows);
     }
   }
 
-  @include gen-grid-span();
+  @include get-grid-spans();
 }

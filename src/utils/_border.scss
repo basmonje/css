@@ -1,6 +1,13 @@
-// Borders
-// Under construction
-
+/**
+  * _border.scss
+  *
+  * Maps
+  * - Border style: $border-styles
+  * - Border direction: $border-directions
+  *
+  * Mixins
+  * - Border directions: @include borderDirections()
+*/
 $border-style: (
   dashed: dashed,
   dotted: dotted,
@@ -13,14 +20,14 @@ $border-style: (
   none: none,
 );
 
-$border-direction: (
+$border-directions: (
   t: top,
   b: bottom,
   r: right,
   l: left,
 );
 
-@mixin borderDirection($direction) {
+@mixin borderDirections($direction) {
   @for $i from 0 through 9 {
     &-#{$i} {
       border-#{$direction}-width: #{$i}px;
@@ -44,9 +51,9 @@ $border-direction: (
     }
   }
 
-  @each $name, $var in $border-direction {
+  @each $name, $var in $border-directions {
     &#{$name} {
-      @include borderDirection($var);
+      @include borderDirections($var);
     }
   }
 }
@@ -56,4 +63,3 @@ $border-direction: (
     @include gen($colors, border-color);
   }
 }
-

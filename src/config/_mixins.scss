@@ -1,0 +1,45 @@
+/**
+  * _mixins.scss
+  *
+  * Mixins files are reusables styles
+*/
+
+// Generate styles based on a map variable. $map is a map variable and $prop a css style attribute.
+@mixin getValueMap($map, $prop) {
+  @each $name, $value in $map {
+    &-#{$name} {
+      #{$prop}: $value;
+    }
+  }
+}
+
+// Get Media querys from a breakpoint map
+@mixin getMediaQuerys {
+  @each $name, $value in $breakpoints {
+    &-#{$name} {
+      @media screen and (min-width: $value) {
+        @content;
+      }
+    }
+  }
+}
+
+// Deprecated {getValueMap}
+@mixin gen($map, $atributo) {
+  @each $nombre, $valor in $map {
+    &-#{$nombre} {
+      #{$atributo}: $valor;
+    }
+  }
+}
+
+// Deprecated {getMediaQuerys}
+@mixin mediaquerys {
+  @each $name, $value in $breakpoints {
+    &-#{$name} {
+      @media screen and (min-width: $value) {
+        @content;
+      }
+    }
+  }
+}

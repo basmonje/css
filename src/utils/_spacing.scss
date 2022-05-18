@@ -1,3 +1,7 @@
+/**
+  * _spacing.scss
+  *
+*/
 $spacing-options: (
   t: top,
   b: bottom,
@@ -5,12 +9,12 @@ $spacing-options: (
   l: left,
 );
 
-@mixin gen-spacing-direction($type) {
+@mixin get-spacing-directions($type) {
   @each $name, $value in $spacing-options {
     &#{$name} {
       @include gen($spacing, #{$type}-#{$value});
 
-      @include mediaquerys {
+      @include getMediaQuerys {
         @include gen($spacing, #{$type}-#{$value});
       }
     }
@@ -23,7 +27,7 @@ $spacing-options: (
         #{$type}-right: $value;
       }
 
-      @include mediaquerys {
+      @include getMediaQuerys {
         &-#{$name} {
           #{$type}-left: $value;
           #{$type}-right: $value;
@@ -39,7 +43,7 @@ $spacing-options: (
         #{$type}-bottom: $value;
       }
 
-      @include mediaquerys {
+      @include getMediaQuerys {
         &-#{$name} {
           #{$type}-top: $value;
           #{$type}-bottom: $value;
@@ -51,18 +55,18 @@ $spacing-options: (
 
 .p {
   @include gen($spacing, padding);
-  @include gen-spacing-direction(padding);
+  @include get-spacing-directions(padding);
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     @include gen($spacing, padding);
   }
 }
 
 .m {
   @include gen($spacing, margin);
-  @include gen-spacing-direction(margin);
+  @include get-spacing-directions(margin);
 
-  @include mediaquerys {
+  @include getMediaQuerys {
     @include gen($spacing, margin);
   }
 }
