@@ -2,7 +2,7 @@
   @basmonje/css
 </h1>
 
-> CSS framework for personal works
+> SCSS framework for personal use
 
 ## Getting Started
 
@@ -13,13 +13,11 @@ npm install @basmonje/css
 Add styles in React
 
 ```js
-import "@basmonje/css";
+import '@basmonje/css';
 
-export const MyApp = () => {
-  return <div className="text-title-1">Hi, World</div>;
-};
+export const MyApp = () => <div className="text-3xl">Hi, World</div>;
 ```
 
-## Docs 
+## Docs
 
 > Under construction 🚧

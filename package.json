@@ -1,34 +1,46 @@
 {
   "name": "@basmonje/css",
-  "version": "1.0.6",
-  "description": "CSS framework for personal works",
-  "main": "lib/index.css",
+  "version": "1.0.7",
+  "description": "SCSS Framework for personal works",
+  "main": "lib/index.min.css",
   "files": [
-    "lib"
+    "lib/*"
   ],
-  "scripts": {
-    "watch": "sass -w src/index.scss lib/index.css --style compressed",
-    "build": "npm run minify",
-    "minify": "sass src/index.scss lib/index.css --style compressed"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/basmonje/css.git"
+  },
+  "bugs": {
+    "url": "https://github.com/basmonje/css/issues"
+  },
+  "homepage": "https://github.com/basmonje/css#README",
+  "author": "basmonje <devmonje@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "watch": "sass -w src/main.scss lib/index.css",
+    "build": "rimraf lib && npm run build-sass && npm run build-autoprefix && npm run build-cleancss",
+    "build-sass": "sass src/main.scss lib/index.css",
+    "build-autoprefix": "postcss --use autoprefixer --map --output ./lib/index.css ./lib/index.css",
+    "build-cleancss": "cleancss -o ./lib/index.min.css ./lib/index.css"
   },
   "keywords": [
     "scss",
     "framework"
   ],
-  "author": "basmonje <devmonje@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/basmonje/css/issues"
-  },
-  "homepage": "https://github.com/basmonje/css#README",
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
-    "sass": "1.50.1"
+    "autoprefixer": "10.4.7",
+    "clean-css-cli": "5.6.0",
+    "postcss-cli": "9.1.0",
+    "rimraf": "3.0.2",
+    "sass": "1.52.2"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none"
   }
 }
