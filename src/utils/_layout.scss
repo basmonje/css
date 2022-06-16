@@ -1,0 +1,204 @@
+/** _layout.scss */
+
+@use '../config/mixins' as m;
+@use '../settings' as s;
+
+$columns: (
+  '1': 1,
+  '2': 2,
+  '3': 3,
+  '4': 4,
+  '5': 5,
+  '6': 6,
+  '7': 7,
+  '8': 8,
+  '9': 9,
+  '10': 10,
+  '11': 11,
+  '12': 12,
+  'auto': auto,
+  '3xs': 16rem,
+  '2xs': 18rem,
+  'xs': 20rem,
+  'sm': 24rem,
+  'md': 28rem,
+  'lg': 32rem,
+  'xl': 36rem,
+  '2xl': 42rem,
+  '3xl': 48rem,
+  '4xl': 56rem,
+  '5xl': 64rem,
+  '6xl': 72rem,
+  '7xl': 80rem
+);
+
+@each $name, $value in $columns {
+  .columns-#{$name} {
+    columns: #{$value};
+  }
+}
+
+@each $name, $value in s.$breakpoints {
+  .container-#{$name} {
+    max-width: #{$value};
+  }
+}
+
+$aspectRatio: (
+  'auto': auto,
+  'square': '1 / 1',
+  'video': '16 / 9'
+);
+
+@each $name, $value in $aspectRatio {
+  .aspect-#{$name} {
+    aspect-ratio: #{$value};
+  }
+}
+
+$displays: (
+  'block': block,
+  'inline-block': inline-block,
+  'inline': inline,
+  'flex': flex,
+  'inline-flex': inline-flex,
+  'table': table,
+  'inline-table': inline-table,
+  'table-caption': table-caption,
+  'table-cell': table-cell,
+  'table-column': table-column,
+  'table-column-group': table-column-group,
+  'table-footer-group': table-footer-group,
+  'table-header-group': table-header-group,
+  'table-row-group': table-row-group,
+  'table-row': table-row,
+  'flow-root': flow-root,
+  'grid': grid,
+  'inline-grid': inline-grid,
+  'contents': contents,
+  'list-item': list-item,
+  'hidden': none
+);
+
+.display {
+  @include m.getValueMap($displays, display);
+
+  @include m.getMediaQuerys {
+    @include m.getValueMap($displays, display);
+  }
+}
+
+$objects-fit: (
+  'contain': contain,
+  'cover': cover,
+  'fill': fill,
+  'none': none,
+  'scale-down': scale-down
+);
+
+@each $name, $value in $objects-fit {
+  .object-#{$name} {
+    object-fit: #{$value};
+  }
+}
+
+$objects-positions: (
+  'bottom': bottom,
+  'center': center,
+  'left': left,
+  'left-bottom': 'left bottom',
+  'left-top': 'left top',
+  'right': right,
+  'right-bottom': 'right bottom',
+  'right-top': 'right top',
+  'top': top
+);
+
+@each $name, $value in $objects-positions {
+  .object-#{$name} {
+    object-position: #{$value};
+  }
+}
+
+$overflows: (
+  'hidden': hidden,
+  'scroll': scroll,
+  'visible': visible,
+  'auto': auto,
+  'inherit': inherit,
+  'initial': initial,
+  'clip': clip
+);
+
+@mixin overflow-directions {
+  &-x {
+    @include m.getValueMap($overflows, overflow-x);
+  }
+
+  &-y {
+    @include m.getValueMap($overflows, overflow-y);
+  }
+}
+
+.overflow {
+  @include m.getValueMap($overflows, overflow);
+  @include overflow-directions;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.static {
+  position: static;
+}
+
+.sticky {
+  position: sticky;
+}
+
+$z-index: (
+  '0': 0,
+  '10': 10,
+  '20': 20,
+  '30': 30,
+  '40': 40,
+  '50': 50,
+  'auto': auto
+);
+
+.z {
+  @include m.getValueMap($z-index, z-index);
+}
+
+@each $name, $value in s.$measures {
+  .top-#{$name} {
+    top: #{$value};
+  }
+}
+
+@each $name, $value in s.$measures {
+  .right-#{$name} {
+    right: #{$value};
+  }
+}
+
+@each $name, $value in s.$measures {
+  .bottom-#{$name} {
+    bottom: #{$value};
+  }
+}
+
+@each $name, $value in s.$measures {
+  .left-#{$name} {
+    left: #{$value};
+  }
+}

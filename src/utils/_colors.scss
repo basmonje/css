@@ -1,0 +1,61 @@
+/** _colors.scss */
+
+@use '../settings' as *;
+
+@each $color, $shades in $colors {
+  @each $shade, $value in $shades {
+    .text-#{$color}-#{$shade} {
+      color: #{$value};
+    }
+
+    .text-active-#{$color}-#{$shade}:active {
+      color: #{$value};
+    }
+
+    .text-hover-#{$color}-#{$shade}:hover {
+      color: #{$value};
+    }
+  }
+
+  @each $shade, $value in $shades {
+    .bg-#{$color}-#{$shade} {
+      background-color: #{$value};
+    }
+
+    .bg-active-#{$color}-#{$shade}:active {
+      background-color: #{$value};
+    }
+
+    .bg-hover-#{$color}-#{$shade}:hover {
+      background-color: #{$value};
+    }
+  }
+}
+
+@each $name, $value in $colors-base {
+  .bg-#{'' + $name} {
+    background-color: #{$value};
+  }
+
+  .bg-active-#{'' + $name}:active {
+    background-color: #{$value};
+  }
+
+  .bg-hover-#{'' + $name}:hover {
+    background-color: #{$value};
+  }
+}
+
+@each $name, $value in $colors-base {
+  .text-#{'' + $name} {
+    color: #{$value};
+  }
+
+  .text-active-#{'' + $name}:active {
+    color: #{$value};
+  }
+
+  .text-hover-#{'' + $name}:hover {
+    color: #{$value};
+  }
+}

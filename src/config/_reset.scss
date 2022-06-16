@@ -1,8 +1,25 @@
-/**
-  * _reset.scss
-  * 
-  * Styles to reset browsers
-*/
+/** _reset.scss */
+
+@use '../settings' as *;
+@use '../config/mixins' as *;
+
+:root {
+  @each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      --clr-#{"" + $color}-#{$shade}: #{$value};
+    }
+  }
+
+  @each $color, $value in $colors-base {
+    --clr-#{"" + $color}: #{$value};
+  }
+
+  --shadow-1: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  --shadow-2: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  --shadow-3: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --shadow-4: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
 
 *,
 *:after,
@@ -17,4 +34,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background: var(--clr-white);
+  color: var(--clr-black);
 }

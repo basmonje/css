@@ -1,0 +1,59 @@
+/* _badge.scss */
+
+@mixin getOutlineColorBadge($color) {
+  &-#{$color} {
+    background-color: var(--clr-#{$color}-50);
+    border-color: var(--clr-#{$color}-200);
+    color: var(--clr-#{$color}-400);
+    border-width: 2px;
+    border-style: solid;
+  }
+}
+
+@mixin getColorBadge($color) {
+  &-#{$color} {
+    background-color: var(--clr-#{$color}-300);
+    color: var(--clr-white);
+  }
+}
+
+$bages: (
+  primary: primary,
+  secondary: secondary,
+  success: success,
+  info: info,
+  danger: danger
+);
+
+.badge {
+  font-size: 14px;
+  padding: 0.25rem 0.45rem;
+  border-radius: 12px;
+
+  &-sm {
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  &-lg {
+    padding: 0.35rem 0.55rem;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  &-dark {
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+  }
+
+  &-outline {
+    @each $name, $value in $bages {
+      @include getOutlineColorBadge($value);
+    }
+  }
+
+  @each $name, $value in $bages {
+    @include getColorBadge($value);
+  }
+}

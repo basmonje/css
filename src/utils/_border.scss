@@ -1,31 +1,107 @@
-/**
-  * _border.scss
-  *
-  * Maps
-  * - Border style: $border-styles
-  * - Border direction: $border-directions
-  *
-  * Mixins
-  * - Border directions: @include borderDirections()
-*/
-$border-style: (
-  dashed: dashed,
-  dotted: dotted,
-  double: double,
-  groove: groove,
-  hidden: hidden,
-  inherit: inherit,
-  initial: initial,
-  solid: solid,
-  none: none,
+/** _border.scss */
+
+@use '../settings' as s;
+
+$radius-sizes: (
+  'none': 0px,
+  'md': 0.375rem,
+  'lg': 0.5rem,
+  'xl': 0.75rem,
+  '2xl': 1rem,
+  '3xl': 1.5rem,
+  'full': 9999px
 );
 
-$border-directions: (
-  t: top,
-  b: bottom,
-  r: right,
-  l: left,
+@each $name, $value in $radius-sizes {
+  .rounded-#{$name} {
+    border-radius: #{$value};
+  }
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-t {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+@each $name, $value in $radius-sizes {
+  .rounded-t-#{$name} {
+    border-top-left-radius: #{$value};
+    border-top-right-radius: #{$value};
+  }
+}
+
+.rounded-b {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+@each $name, $value in $radius-sizes {
+  .rounded-b-#{$name} {
+    border-bottom-left-radius: #{$value};
+    border-bottom-right-radius: #{$value};
+  }
+}
+
+.rounded-l {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+@each $name, $value in $radius-sizes {
+  .rounded-l-#{$name} {
+    border-top-left-radius: #{$value};
+    border-bottom-left-radius: #{$value};
+  }
+}
+
+.rounded-r {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+@each $name, $value in $radius-sizes {
+  .rounded-r-#{$name} {
+    border-top-right-radius: #{$value};
+    border-bottom-right-radius: #{$value};
+  }
+}
+
+$directions-rounded: (
+  'tl': 'top-left',
+  'tr': 'top-right',
+  'bl': 'bottom-left',
+  'br': 'bottom-right'
 );
+
+.rounded-tl {
+  border-top-left-radius: 0.25rem;
+}
+
+.rounded-tr {
+  border-top-right-radius: 0.25rem;
+}
+
+.rounded-bl {
+  border-bottom-left-radius: 0.25rem;
+}
+
+.rounded-br {
+  border-bottom-right-radius: 0.25rem;
+}
+
+@each $nameRounded, $fullName in $directions-rounded {
+  .rounded-#{$nameRounded} {
+    @each $name, $value in $radius-sizes {
+      &-#{$name} {
+        border-#{$fullName}-radius: #{$value};
+      }
+    }
+  }
+}
 
 @mixin borderDirections($direction) {
   @for $i from 0 through 9 {
@@ -36,30 +112,143 @@ $border-directions: (
   }
 }
 
-.b {
-  @include gen($colors, border-color);
+$border-sizes: (
+  '0': 0,
+  '1': 1px,
+  '2': 2px,
+  '3': 3px,
+  '4': 4px,
+  '5': 5px
+);
 
-  @for $i from 0 through 9 {
-    &-#{$i} {
-      border-width: #{$i}px;
-    }
+@each $name, $value in $border-sizes {
+  .b-#{$name} {
+    border-width: #{$value};
+    border-style: solid;
+    border-color: black;
+  }
+}
+
+@each $name, $value in $border-sizes {
+  .by-#{$name} {
+    border-top-width: #{$value};
+    border-bottom-width: #{$value};
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: black;
+    border-bottom-color: black;
   }
 
-  @each $nam, $var in $border-style {
-    &-#{$nam} {
-      border-style: $var;
-    }
+  .bx-#{$name} {
+    border-left-width: #{$value};
+    border-right-width: #{$value};
+    border-left-style: solid;
+    border-right-style: solid;
+    border-left-color: black;
+    border-right-color: black;
   }
+}
 
-  @each $name, $var in $border-directions {
-    &#{$name} {
-      @include borderDirections($var);
+$border-styles: (
+  'dashed': dashed,
+  'dotted': dotted,
+  'double': double,
+  'groove': groove,
+  'hidden': hidden,
+  'inherit': inherit,
+  'initial': initial,
+  'inset': inset,
+  'none': none,
+  'outset': outset,
+  'ridge': ridge,
+  'unset': unset
+);
+
+@each $name, $value in $border-styles {
+  .b-#{$name} {
+    border-style: #{$value};
+  }
+}
+
+$border-directions: (
+  't': top,
+  'b': bottom,
+  'r': right,
+  'l': left
+);
+
+@each $name, $value in $border-directions {
+  .b#{$name} {
+    @each $size, $prop in $border-sizes {
+      &-#{$size} {
+        border-#{$value}-width: #{$prop};
+        border-#{$value}-style: solid;
+        border-#{$value}-color: black;
+      }
     }
   }
 }
 
-[class="dark"] {
-  .dark-b {
-    @include gen($colors, border-color);
+@each $color, $shades in s.$colors {
+  @each $shade, $value in $shades {
+    .b-#{$color}-#{$shade} {
+      border-color: #{$value};
+    }
+  }
+}
+
+@each $name, $value in s.$colors-base {
+  .b-#{'' + $name} {
+    border-color: #{$value};
+  }
+}
+
+$outline-widths: (
+  '0': 0px,
+  '1': 1px,
+  '2': 2px,
+  '4': 4px,
+  '8': 8px
+);
+
+@each $name, $value in $outline-widths {
+  .outline-#{$name} {
+    outline-width: #{$value};
+  }
+}
+
+@each $color, $shades in s.$colors {
+  @each $shade, $value in $shades {
+    .outline-#{$color}-#{$shade} {
+      outline-color: #{$value};
+    }
+  }
+}
+
+$outline-styles: (
+  'dashed': dashed,
+  'dotted': dotted,
+  'double': double,
+  'hidden': hidden
+);
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.outline {
+  outline-style: solid;
+}
+
+@each $name, $value in $outline-styles {
+  .outline-#{$name} {
+    outline-style: #{$value};
+  }
+}
+
+@each $name, $value in $outline-widths {
+  .outline-offset-#{$name} {
+    outline-offset: #{$value};
   }
 }

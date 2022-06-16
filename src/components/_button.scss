@@ -1,145 +1,9 @@
-/*
-  * _button.scss
-  *
-  * The classic button, in different colors, sizes, and states.
-  * 
-  * Maps
-  * - Colors default: $buttons-colors-default
-  * - Colors outline: $buttons-color-outline
-  *
-  * Mixins
-  * - Get colors default: @include getButtonColors()
-  * - Get colors outline: @include getButtonColors()
-  *
-  * Styles
-  * - Button: .btn
-  * - Old button: .button (deprecated)
-*/
-
-$buttons-colors-default: (
-  "white": (
-    color: $-bg-dark,
-    background: $-bg-white,
-    backgroundHover: $-bg-white-600,
-    backgroundActive: $-bg-white-800,
-    backgroundDisabled: $-bg-white-300,
-  ),
-  "accent": (
-    color: $-bg-white,
-    background: $-bg-red-500,
-    backgroundHover: $-bg-red-600,
-    backgroundActive: $-bg-red-800,
-    backgroundDisabled: $-bg-red-300,
-  ),
-  "primary": (
-    color: $-bg-white,
-    background: $-bg-primary-500,
-    backgroundHover: $-bg-primary-600,
-    backgroundActive: $-bg-primary-800,
-    backgroundDisabled: $-bg-primary-300,
-  ),
-  "secondary": (
-    color: $-bg-white,
-    background: $-bg-secondary-500,
-    backgroundHover: $-bg-secondary-600,
-    backgroundActive: $-bg-secondary-800,
-    backgroundDisabled: $-bg-secondary-300,
-  ),
-  "dark": (
-    color: $-bg-white,
-    background: $-bg-dark,
-    backgroundHover: $-bg-black-600,
-    backgroundActive: $-bg-black-800,
-    backgroundDisabled: $-bg-black-300,
-  ),
-);
-
-$buttons-color-outline: (
-  "accent": (
-    color: $-bg-red-500,
-    backgroundHover: $-bg-red-600,
-    backgroundActive: $-bg-red-800,
-    backgroundDisabled: $-bg-red-300,
-  ),
-  "primary": (
-    color: $-bg-primary-500,
-    backgroundHover: $-bg-primary-600,
-    backgroundActive: $-bg-primary-800,
-    backgroundDisabled: $-bg-primary-300,
-  ),
-  "secondary": (
-    color: $-bg-secondary-500,
-    backgroundHover: $-bg-secondary-600,
-    backgroundActive: $-bg-secondary-800,
-    backgroundDisabled: $-bg-secondary-300,
-  ),
-  "dark": (
-    color: $-bg-dark,
-    backgroundHover: $-bg-black-600,
-    backgroundActive: $-bg-black-800,
-    backgroundDisabled: $-bg-black-300,
-  ),
-);
-
-@mixin getButtonColors() {
-  @each $name, $value in $buttons-colors-default {
-    &-#{$name} {
-      background-color: map-get($value, "background");
-      border-color: map-get($value, "background");
-      box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.15),
-        0 1px 1px rgba(39, 44, 51, 0.075);
-      color: map-get($value, "color");
-
-      &:hover {
-        background-color: map-get($value, "backgroundHover");
-        border-color: map-get($value, "backgroundHover");
-      }
-
-      &:active {
-        background-color: map-get($value, "backgroundActive");
-        border-color: map-get($value, "backgroundActive");
-      }
-
-      &:disabled {
-        background-color: map-get($value, "backgroundDisabled");
-        border-color: map-get($value, "backgroundDisabled");
-      }
-    }
-  }
-}
-
-@mixin getButtonColorOutline() {
-  @each $name, $value in $buttons-color-outline {
-    &-#{$name} {
-      background: transparent;
-      color: map-get($value, "color");
-      border: 1px solid map-get($value, "color");
-
-      &:hover {
-        color: $-bg-white;
-        background-color: map-get($value, "backgroundHover");
-        border-color: map-get($value, "backgroundHover");
-      }
-
-      &:active {
-        background-color: map-get($value, "backgroundActive");
-        border-color: map-get($value, "backgroundActive");
-      }
-
-      &:disabled {
-        background: transparent;
-        color: map-get($value, "backgroundDisabled");
-        border: 1px solid map-get($value, "backgroundDisabled");
-      }
-    }
-  }
-}
+/* _button.scss */
 
 .btn {
   text-align: center;
   border: 1px solid transparent;
   padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
   font-weight: 600;
   vertical-align: middle;
   user-select: none;
@@ -148,34 +12,31 @@ $buttons-color-outline: (
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-  @include getButtonColors();
 
   > .disabled {
     cursor: not-allowed;
   }
 
-  &-outline {
-    @include getButtonColorOutline();
+  &-upper {
+    text-transform: uppercase;
   }
 
-  &-rounded {
+  &-r-1 {
+    border-radius: 8px;
+  }
+
+  &-r-2 {
     border-radius: 100px;
   }
 
   &-sm {
     padding: 0.25rem 0.5rem;
-    border-radius: 2rem;
     font-size: 0.7109375rem;
     line-height: 1.5;
   }
 
   &-lg {
     padding: 0.5rem 2rem;
-    border-radius: 0.5rem;
     font-size: 1.21875rem;
     line-height: 1.75;
   }
@@ -214,31 +75,70 @@ $buttons-color-outline: (
   &:not(:disabled):not(.disabled) {
     cursor: pointer;
   }
-}
 
-.button-list > .btn {
-  margin-right: 0.5rem;
-}
-
-.btn-link {
-  background: transparent;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-// Deprecated
-.button {
-  border: none;
-  cursor: pointer;
-
-  .disabled {
-    cursor: not-allowed;
+  & + & {
+    margin-left: 1em;
   }
 
-  &-icon-square {
-    width: 40px;
-    height: 40px;
+  &-icon {
+    padding: 0.5rem;
+    background-color: transparent;
+
+    &:active {
+      background-color: var(--clr-dark-50) !important;
+      outline-width: 2;
+      outline-style: solid;
+      outline-color: var(--clr-dark-200);
+    }
+
+    &-sm {
+      padding: 0.15rem;
+      background-color: transparent;
+
+      &:active {
+        background-color: var(--clr-dark-50) !important;
+        outline-width: 2;
+        outline-style: solid;
+        outline-color: var(--clr-dark-200);
+      }
+    }
+  }
+
+  &-link {
+    padding: 0.5rem;
+    background-color: transparent;
+
+    &:active {
+      background-color: var(--clr-dark-50) !important;
+      outline-width: 2;
+      outline-style: solid;
+      outline-color: var(--clr-dark-200);
+    }
+  }
+
+  &-primary {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-white);
+
+    &:active {
+      background-color: var(--clr-primary-400) !important;
+      outline-width: 2;
+      outline-style: solid;
+      outline-color: var(--clr-primary-200);
+    }
+
+    &:hover {
+      background-color: var(--clr-primary-600);
+    }
+  }
+
+  &-primary-light {
+    background-color: var(--clr-white);
+    box-shadow: var(--shadow-3);
+  }
+
+  &-primary-dark {
+    background-color: var(--clr-black);
+    color: var(--clr-white);
   }
 }

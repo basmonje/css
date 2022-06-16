@@ -1,0 +1,174 @@
+/** _typography.scss */
+
+@use '../config/mixins' as m;
+
+@mixin getBold {
+  &-bold {
+    font-weight: 600;
+    letter-spacing: 0.16px;
+  }
+}
+
+.bold {
+  font-weight: 600;
+}
+
+button {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  line-height: 22px;
+}
+
+$decoration-text: (
+  'none': none,
+  'dashed': dashed,
+  'dotted': dotted,
+  'double': double,
+  'through': line-through,
+  'overline': overline,
+  'solid': solid,
+  'underline': underline,
+  'wavy': wavy
+);
+
+$text-align: (
+  'center': center,
+  'end': end,
+  'justify': justify,
+  'left': left,
+  'right': right,
+  'start': start,
+  'inherit': inherit,
+  'initial': initial
+);
+
+$user-select: (
+  'none': none,
+  'auto': auto,
+  'text': text,
+  'contain': contain,
+  'all': all
+);
+
+@each $name, $value in $decoration-text {
+  .decoration-#{$name} {
+    text-decoration: #{$value};
+  }
+}
+
+@each $name, $value in $text-align {
+  .text-#{$name} {
+    text-align: #{$value};
+  }
+}
+
+@each $name, $value in $user-select {
+  .select-#{$name} {
+    user-select: #{$value};
+  }
+}
+
+.wrap-word {
+  word-wrap: break-word;
+}
+
+.space-nowrap {
+  white-space: nowrap;
+}
+
+.text-wrap {
+  word-wrap: break-word;
+}
+
+.clip {
+  text-overflow: clip;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+$sizes: (
+  'xs': (
+    font-size: 0.75rem,
+    line-height: 1rem
+  ),
+  'sm': (
+    font-size: 0.875rem,
+    line-height: 1.25rem
+  ),
+  'base': (
+    font-size: 1rem,
+    line-height: 1.5rem
+  ),
+  'lg': (
+    font-size: 1.125rem,
+    line-height: 1.75rem
+  ),
+  'xl': (
+    font-size: 1.25rem,
+    line-height: 1.75rem
+  ),
+  '2xl': (
+    font-size: 1.5rem,
+    line-height: 2rem
+  ),
+  '3xl': (
+    font-size: 1.875rem,
+    line-height: 2.25rem
+  ),
+  '4xl': (
+    font-size: 2.25rem,
+    line-height: 2.5rem
+  ),
+  '5xl': (
+    font-size: 3rem,
+    line-height: 1
+  ),
+  '6xl': (
+    font-size: 3.75rem,
+    line-height: 1
+  ),
+  '7xl': (
+    font-size: 4.5rem,
+    line-height: 1
+  ),
+  '8xl': (
+    font-size: 6rem,
+    line-height: 1
+  ),
+  '9xl': (
+    font-size: 8rem,
+    line-height: 1
+  )
+);
+
+.text {
+  @each $name, $args in $sizes {
+    &-#{$name} {
+      font-size: map-get($args, font-size);
+      line-height: map-get($args, line-height);
+    }
+  }
+}
+
+$weight-sizes: (
+  'thin': 100,
+  'extralight': 200,
+  'light': 300,
+  'normal': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extrabold': 800,
+  'black': 900
+);
+
+@each $name, $value in $weight-sizes {
+  .font-#{$name} {
+    font-weight: #{$value};
+  }
+}
