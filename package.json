@@ -2,10 +2,15 @@
   "name": "@basmonje/css",
   "version": "1.0.7",
   "description": "SCSS Framework for personal works",
-  "main": "lib/index.min.css",
   "files": [
-    "lib/*"
+    "lib"
   ],
+  "exports": {
+    ".": "./lib/index.min.css",
+    "./dark": "./lib/dark.scss",
+    "./components/*": "./lib/components/*.scss",
+    "./utils/*": "./lib/utils/*.scss"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/basmonje/css.git"
@@ -20,11 +25,12 @@
     "access": "public"
   },
   "scripts": {
-    "watch": "sass -w src/main.scss lib/index.css",
-    "build": "rimraf lib && npm run build-sass && npm run build-autoprefix && npm run build-cleancss",
-    "build-sass": "sass src/main.scss lib/index.css",
-    "build-autoprefix": "postcss --use autoprefixer --map --output ./lib/index.css ./lib/index.css",
-    "build-cleancss": "cleancss -o ./lib/index.min.css ./lib/index.css"
+    "watch": "sass -w src/index.scss lib/index.css --source-map",
+    "build": "rimraf lib && npm run build-sass && npm run build-autoprefix && npm run build-cleancss && npm run copy",
+    "build-sass": "sass src/index.scss lib/index.css --no-source-map",
+    "build-autoprefix": "postcss --use autoprefixer --no-map --output ./lib/index.css ./lib/index.css",
+    "build-cleancss": "cleancss -o ./lib/index.min.css ./lib/index.css",
+    "copy": "xcopy /e src lib"
   },
   "keywords": [
     "scss",

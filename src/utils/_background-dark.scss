@@ -1,0 +1,34 @@
+/* colors theme dark */
+@use '../config/variables' as v;
+
+[class='dark'] {
+  @each $color, $shades in v.$colors-ext {
+    @each $shade, $value in $shades {
+      .dark-bg-#{$color}-#{$shade} {
+        background-color: #{$value};
+      }
+
+      .dark-bg-active-#{$color}-#{$shade}:active {
+        background-color: #{$value};
+      }
+
+      .dark-bg-hover-#{$color}-#{$shade}:hover {
+        background-color: #{$value};
+      }
+    } 
+  }
+
+  @each $name, $value in v.$colors-base {
+    .dark-bg-#{$name} {
+      background-color: #{$value};
+    }
+
+    .dark-bg-active-#{$name}:active {
+      background-color: #{$value};
+    }
+
+    .dark-bg-hover-#{$name}:hover {
+      background-color: #{$value};
+    }
+  }
+}

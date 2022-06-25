@@ -1,0 +1,26 @@
+/* text-color */
+@use '../config/variables' as v;
+
+[class='dark'] {
+  @each $color, $shades in v.$colors-ext {
+    @each $shade, $value in $shades {
+      .dark-text-#{$color}-#{$shade} {
+        color: #{$value};
+      }
+
+      .dark-text-hover-#{$color}-#{$shade}:hover {
+        color: #{$value};
+      }
+    }
+  }
+
+  @each $name, $value in v.$colors-base {
+    .dark-text-#{$name} {
+      color: #{$value};
+    }
+
+    .dark-text-hover-#{$name}:hover {
+      color: #{$value};
+    }
+  }
+}

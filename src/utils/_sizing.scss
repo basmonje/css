@@ -1,0 +1,293 @@
+@use '../config/variables' as v;
+
+/* height */
+
+@each $name, $size in v.$sizes-first {
+  .h-#{$name} {
+    height: #{$size};
+  }
+}
+
+@each $name, $size in v.$sizes-second {
+  .h-#{$name} {
+    height: #{$size};
+  }
+}
+
+@each $name, $size in v.$sizes-third {
+  .h-#{$name} {
+    height: #{$size};
+  }
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $name, $size in v.$sizes-first {
+      .h-#{$device}-#{$name} {
+        height: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$sizes-second {
+      .h-#{$device}-#{$name} {
+        height: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$sizes-third {
+      .h-#{$device}-#{$name} {
+        height: #{$size};
+      }
+    }
+
+    .h-#{$device}-screen {
+      height: 100vh;
+    }
+  }
+}
+
+/* width */
+
+@each $name, $size in v.$sizes-first {
+  .w-#{$name} {
+    width: #{$size};
+  }
+}
+
+@each $name, $size in v.$sizes-second {
+  .w-#{$name} {
+    width: #{$size};
+  }
+}
+
+@each $name, $size in v.$sizes-third {
+  .w-#{$name} {
+    width: #{$size};
+  }
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $name, $size in v.$sizes-first {
+      .w-#{$device}-#{$name} {
+        width: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$sizes-second {
+      .w-#{$device}-#{$name} {
+        width: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$sizes-third {
+      .w-#{$device}-#{$name} {
+        width: #{$size};
+      }
+    }
+
+    .w-#{$device}-screen {
+      width: 100vw;
+    }
+  }
+}
+
+/* max-height */
+
+.max-h-0 {
+  max-height: 0px;
+}
+
+.max-h-none {
+  max-height: none;
+}
+
+.max-h-screen {
+  max-height: 100vh;
+}
+
+@each $name, $size in v.$sizes-four {
+  .max-h-#{$name} {
+    max-height: #{$size};
+  }
+}
+
+@each $name, $size in v.$sizes-third {
+  .max-h-#{$name} {
+    max-height: #{$size};
+  }
+}
+
+@each $name, $size in v.$breakpoints {
+  .max-h-screen-#{$name} {
+    max-height: #{$size};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    .max-h-#{device}-0 {
+      max-height: 0px;
+    }
+
+    .max-h-#{device}-none {
+      max-height: none;
+    }
+
+    .max-h-#{device}-screen {
+      max-height: 100vh;
+    }
+
+    @each $name, $size in v.$sizes-four {
+      .max-h-#{device}-#{$name} {
+        max-height: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$sizes-third {
+      .max-h-#{device}-#{$name} {
+        max-height: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$breakpoints {
+      .max-h-screen-#{device}-#{$name} {
+        max-height: #{$size};
+      }
+    }
+  }
+}
+
+/* max-width */
+
+.max-w-0 {
+  max-width: 0px;
+}
+
+.max-w-none {
+  max-width: none;
+}
+
+.max-w-screen {
+  max-width: 100vw;
+}
+
+@each $name, $size in v.$sizes-four {
+  .max-w-#{$name} {
+    max-width: #{$size};
+  }
+}
+
+@each $name, $size in v.$sizes-third {
+  .max-w-#{$name} {
+    max-width: #{$size};
+  }
+}
+
+@each $name, $size in v.$breakpoints {
+  .max-w-screen-#{$name} {
+    max-width: #{$size};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    .max-w-#{$device}-0 {
+      max-width: 0px;
+    }
+
+    .max-w-#{$device}-none {
+      max-width: none;
+    }
+
+    .max-w-#{$device}-screen {
+      max-width: 100vw;
+    }
+
+    @each $name, $size in v.$sizes-four {
+      .max-w-#{$device}-#{$name} {
+        max-width: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$sizes-third {
+      .max-w-#{$device}-#{$name} {
+        max-width: #{$size};
+      }
+    }
+
+    @each $name, $size in v.$breakpoints {
+      .max-w-screen-#{$device}-#{$name} {
+        max-width: #{$size};
+      }
+    }
+  }
+}
+
+$min-sizes: (
+  '0': 0px,
+  'full': 100%,
+  'min': min-content,
+  'max': max-content,
+  'fit': fit-content
+);
+
+/* min-height */
+
+@each $size, $value in $min-sizes {
+  .min-h-#{$size} {
+    min-height: #{$value};
+  }
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in $min-sizes {
+      .min-h-#{$device}-#{$size} {
+        min-height: #{$value};
+      }
+    }
+
+    .min-h-#{$device}-screen {
+      min-height: 100vh;
+    }
+  }
+}
+
+/* min-width */
+
+@each $size, $value in $min-sizes {
+  .min-w-#{$size} {
+    min-width: #{$value};
+  }
+}
+
+.min-w-screen {
+  min-width: 100vw;
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in $min-sizes {
+      .min-w-#{$device}-#{$size} {
+        min-width: #{$value};
+      }
+    }
+
+    .min-w-#{$device}-screen {
+      min-width: 100vw;
+    }
+  }
+}

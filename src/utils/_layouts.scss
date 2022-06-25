@@ -1,7 +1,20 @@
-/** _layout.scss */
+@use '../config/variables' as v;
 
-@use '../config/mixins' as m;
-@use '../settings' as s;
+/* aspect ratio */
+
+$aspectRatio: (
+  'auto': auto,
+  'square': '1 / 1',
+  'video': '16 / 9'
+);
+
+@each $name, $value in $aspectRatio {
+  .aspect-#{$name} {
+    aspect-ratio: #{$value};
+  }
+}
+
+/* columns */
 
 $columns: (
   '1': 1,
@@ -15,21 +28,7 @@ $columns: (
   '9': 9,
   '10': 10,
   '11': 11,
-  '12': 12,
-  'auto': auto,
-  '3xs': 16rem,
-  '2xs': 18rem,
-  'xs': 20rem,
-  'sm': 24rem,
-  'md': 28rem,
-  'lg': 32rem,
-  'xl': 36rem,
-  '2xl': 42rem,
-  '3xl': 48rem,
-  '4xl': 56rem,
-  '5xl': 64rem,
-  '6xl': 72rem,
-  '7xl': 80rem
+  '12': 12
 );
 
 @each $name, $value in $columns {
@@ -38,23 +37,15 @@ $columns: (
   }
 }
 
-@each $name, $value in s.$breakpoints {
+/* container */
+
+@each $name, $value in v.$breakpoints {
   .container-#{$name} {
     max-width: #{$value};
   }
 }
 
-$aspectRatio: (
-  'auto': auto,
-  'square': '1 / 1',
-  'video': '16 / 9'
-);
-
-@each $name, $value in $aspectRatio {
-  .aspect-#{$name} {
-    aspect-ratio: #{$value};
-  }
-}
+/* display */
 
 $displays: (
   'block': block,
@@ -80,13 +71,23 @@ $displays: (
   'hidden': none
 );
 
-.display {
-  @include m.getValueMap($displays, display);
-
-  @include m.getMediaQuerys {
-    @include m.getValueMap($displays, display);
+@each $name, $value in $displays {
+  .#{$name} {
+    display: #{$value};
   }
 }
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $name, $value in $displays {
+      .#{$name}-#{$device} {
+        display: #{$value};
+      }
+    }
+  }
+}
+
+/* object-fit */
 
 $objects-fit: (
   'contain': contain,
@@ -101,6 +102,8 @@ $objects-fit: (
     object-fit: #{$value};
   }
 }
+
+/* object-position */
 
 $objects-positions: (
   'bottom': bottom,
@@ -120,6 +123,8 @@ $objects-positions: (
   }
 }
 
+/* overflow */
+
 $overflows: (
   'hidden': hidden,
   'scroll': scroll,
@@ -130,20 +135,25 @@ $overflows: (
   'clip': clip
 );
 
-@mixin overflow-directions {
-  &-x {
-    @include m.getValueMap($overflows, overflow-x);
-  }
-
-  &-y {
-    @include m.getValueMap($overflows, overflow-y);
+@each $name, $value in $overflows {
+  .overflow-#{$name} {
+    overflow: #{$value};
   }
 }
 
-.overflow {
-  @include m.getValueMap($overflows, overflow);
-  @include overflow-directions;
+@each $name, $value in $overflows {
+  .overflow-x-#{$name} {
+    overflow-x: #{$value};
+  }
 }
+
+@each $name, $value in $overflows {
+  .overflow-y-#{$name} {
+    overflow-y: #{$value};
+  }
+}
+
+/* position */
 
 .absolute {
   position: absolute;
@@ -165,6 +175,34 @@ $overflows: (
   position: sticky;
 }
 
+/* top, right, bottom, left */
+
+@each $name, $value in v.$sizes-first {
+  .top-#{$name} {
+    top: #{$value};
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .right-#{$name} {
+    right: #{$value};
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .bottom-#{$name} {
+    bottom: #{$value};
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .left-#{$name} {
+    left: #{$value};
+  }
+}
+
+/* z-index */
+
 $z-index: (
   '0': 0,
   '10': 10,
@@ -175,30 +213,8 @@ $z-index: (
   'auto': auto
 );
 
-.z {
-  @include m.getValueMap($z-index, z-index);
-}
-
-@each $name, $value in s.$measures {
-  .top-#{$name} {
-    top: #{$value};
-  }
-}
-
-@each $name, $value in s.$measures {
-  .right-#{$name} {
-    right: #{$value};
-  }
-}
-
-@each $name, $value in s.$measures {
-  .bottom-#{$name} {
-    bottom: #{$value};
-  }
-}
-
-@each $name, $value in s.$measures {
-  .left-#{$name} {
-    left: #{$value};
+@each $name, $value in $z-index {
+  .z-#{$name} {
+    z-index: #{$value};
   }
 }

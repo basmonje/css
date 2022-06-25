@@ -1,0 +1,31 @@
+/* utils */
+
+.bar {
+  &-thin::-webkit-scrollbar {
+    width: 0.375rem;
+    height: 0.375rem;
+  }
+
+  &-thin::-webkit-scrollbar-track {
+    background: var(--clr-black-50);
+    border: 1px solid var(--clr-black-300);
+    background-clip: content-box;
+  }
+
+  &-thin::-webkit-scrollbar-thumb {
+    background: var(--clr-black-600);
+  }
+
+  &-thin {
+    scrollbar-width: thin;
+  }
+
+  &-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  &-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

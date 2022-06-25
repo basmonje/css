@@ -1,97 +1,8 @@
-/** _typography.scss */
+@use '../config/variables' as v;
 
-@use '../config/mixins' as m;
+/* font-size */
 
-@mixin getBold {
-  &-bold {
-    font-weight: 600;
-    letter-spacing: 0.16px;
-  }
-}
-
-.bold {
-  font-weight: 600;
-}
-
-button {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 1.25px;
-  line-height: 22px;
-}
-
-$decoration-text: (
-  'none': none,
-  'dashed': dashed,
-  'dotted': dotted,
-  'double': double,
-  'through': line-through,
-  'overline': overline,
-  'solid': solid,
-  'underline': underline,
-  'wavy': wavy
-);
-
-$text-align: (
-  'center': center,
-  'end': end,
-  'justify': justify,
-  'left': left,
-  'right': right,
-  'start': start,
-  'inherit': inherit,
-  'initial': initial
-);
-
-$user-select: (
-  'none': none,
-  'auto': auto,
-  'text': text,
-  'contain': contain,
-  'all': all
-);
-
-@each $name, $value in $decoration-text {
-  .decoration-#{$name} {
-    text-decoration: #{$value};
-  }
-}
-
-@each $name, $value in $text-align {
-  .text-#{$name} {
-    text-align: #{$value};
-  }
-}
-
-@each $name, $value in $user-select {
-  .select-#{$name} {
-    user-select: #{$value};
-  }
-}
-
-.wrap-word {
-  word-wrap: break-word;
-}
-
-.space-nowrap {
-  white-space: nowrap;
-}
-
-.text-wrap {
-  word-wrap: break-word;
-}
-
-.clip {
-  text-overflow: clip;
-}
-
-.ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-$sizes: (
+$font-sizes: (
   'xs': (
     font-size: 0.75rem,
     line-height: 1rem
@@ -146,14 +57,14 @@ $sizes: (
   )
 );
 
-.text {
-  @each $name, $args in $sizes {
-    &-#{$name} {
-      font-size: map-get($args, font-size);
-      line-height: map-get($args, line-height);
-    }
+@each $name, $args in $font-sizes {
+  .text-#{$name} {
+    font-size: map-get($args, font-size);
+    line-height: map-get($args, line-height);
   }
 }
+
+/* font-weight */
 
 $weight-sizes: (
   'thin': 100,
@@ -168,7 +79,86 @@ $weight-sizes: (
 );
 
 @each $name, $value in $weight-sizes {
-  .font-#{$name} {
+  .text-#{$name} {
     font-weight: #{$value};
+  }
+}
+
+/* text-align */
+
+$text-align: (
+  'center': center,
+  'end': end,
+  'justify': justify,
+  'left': left,
+  'right': right,
+  'start': start,
+  'inherit': inherit,
+  'initial': initial
+);
+
+@each $name, $value in $text-align {
+  .text-#{$name} {
+    text-align: #{$value};
+  }
+}
+
+/* text-color */
+
+@each $color, $shades in v.$colors-ext {
+  @each $shade, $value in $shades {
+    .text-#{$color}-#{$shade} {
+      color: #{$value};
+    }
+
+    .text-hover-#{$color}-#{$shade}:hover {
+      color: #{$value};
+    }
+  }
+}
+
+@each $name, $value in v.$colors-base {
+  .text-#{$name} {
+    color: #{$value};
+  }
+
+  .text-hover-#{$name}:hover {
+    color: #{$value};
+  }
+}
+
+/* text-decoration */
+
+$decoration-text: (
+  'none': none,
+  'dashed': dashed,
+  'dotted': dotted,
+  'double': double,
+  'through': line-through,
+  'overline': overline,
+  'solid': solid,
+  'underline': underline,
+  'wavy': wavy
+);
+
+@each $name, $value in $decoration-text {
+  .decoration-#{$name} {
+    text-decoration: #{$value};
+  }
+}
+
+/* user-select */
+
+$user-select: (
+  'none': none,
+  'auto': auto,
+  'text': text,
+  'contain': contain,
+  'all': all
+);
+
+@each $name, $value in $user-select {
+  .select-#{$name} {
+    user-select: #{$value};
   }
 }

@@ -1,0 +1,32 @@
+/* colors */
+@use '../config/variables' as v;
+
+@each $color, $shades in v.$colors-ext {
+  @each $shade, $value in $shades {
+    .bg-#{$color}-#{$shade} {
+      background-color: #{$value};
+    }
+
+    .bg-active-#{$color}-#{$shade}:active {
+      background-color: #{$value};
+    }
+
+    .bg-hover-#{$color}-#{$shade}:hover {
+      background-color: #{$value};
+    }
+  }
+}
+
+@each $name, $value in v.$colors-base {
+  .bg-#{$name} {
+    background-color: #{$value};
+  }
+
+  .bg-active-#{$name}:active {
+    background-color: #{$value};
+  }
+
+  .bg-hover-#{$name}:hover {
+    background-color: #{$value};
+  }
+}

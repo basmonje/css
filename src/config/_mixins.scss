@@ -1,21 +1,11 @@
-/** _mixins.scss */
-@use '../settings' as s;
+/* mixins */
 
-
-@mixin getValueMap($map, $prop) {
-  @each $name, $value in $map {
-    &-#{$name} {
-      #{$prop}: $value;
-    }
-  }
-}
+@use './variables' as v;
 
 @mixin getMediaQuerys {
-  @each $name, $value in s.$breakpoints {
-    &-#{$name} {
-      @media only screen and (min-width: $value) {
-        @content;
-      }
+  @each $name, $value in v.$breakpoints {
+    @media only screen and (min-width: $value) {
+      @content;
     }
   }
 }

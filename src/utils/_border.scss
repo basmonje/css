@@ -1,6 +1,24 @@
-/** _border.scss */
+/* border */
 
-@use '../settings' as s;
+@use '../config/variables' as v;
+
+/* border-color */
+
+@each $color, $shades in v.$colors-ext {
+  @each $shade, $value in $shades {
+    .b-#{$color}-#{$shade} {
+      border-color: #{$value};
+    }
+  }
+}
+
+@each $name, $value in v.$colors-base {
+  .b-#{$name} {
+    border-color: #{$value};
+  }
+}
+
+/* border-radius */
 
 $radius-sizes: (
   'none': 0px,
@@ -10,6 +28,13 @@ $radius-sizes: (
   '2xl': 1rem,
   '3xl': 1.5rem,
   'full': 9999px
+);
+
+$directions-rounded: (
+  'tl': 'top-left',
+  'tr': 'top-right',
+  'bl': 'bottom-left',
+  'br': 'bottom-right'
 );
 
 @each $name, $value in $radius-sizes {
@@ -70,13 +95,6 @@ $radius-sizes: (
   }
 }
 
-$directions-rounded: (
-  'tl': 'top-left',
-  'tr': 'top-right',
-  'bl': 'bottom-left',
-  'br': 'bottom-right'
-);
-
 .rounded-tl {
   border-top-left-radius: 0.25rem;
 }
@@ -103,14 +121,30 @@ $directions-rounded: (
   }
 }
 
-@mixin borderDirections($direction) {
-  @for $i from 0 through 9 {
-    &-#{$i} {
-      border-#{$direction}-width: #{$i}px;
-      border-#{$direction}-style: solid;
-    }
+/* border-styles */
+
+$border-styles: (
+  'dashed': dashed,
+  'dotted': dotted,
+  'double': double,
+  'groove': groove,
+  'hidden': hidden,
+  'inherit': inherit,
+  'initial': initial,
+  'inset': inset,
+  'none': none,
+  'outset': outset,
+  'ridge': ridge,
+  'unset': unset
+);
+
+@each $name, $value in $border-styles {
+  .b-#{$name} {
+    border-style: #{$value};
   }
 }
+
+/* border-width */
 
 $border-sizes: (
   '0': 0,
@@ -121,11 +155,30 @@ $border-sizes: (
   '5': 5px
 );
 
+$border-directions: (
+  't': top,
+  'b': bottom,
+  'r': right,
+  'l': left
+);
+
 @each $name, $value in $border-sizes {
   .b-#{$name} {
     border-width: #{$value};
     border-style: solid;
     border-color: black;
+  }
+}
+
+@each $name, $value in $border-directions {
+  .b#{$name} {
+    @each $size, $prop in $border-sizes {
+      &-#{$size} {
+        border-#{$value}-width: #{$prop};
+        border-#{$value}-style: solid;
+        // border-#{$value}-color: black;
+      }
+    }
   }
 }
 
@@ -149,61 +202,25 @@ $border-sizes: (
   }
 }
 
-$border-styles: (
-  'dashed': dashed,
-  'dotted': dotted,
-  'double': double,
-  'groove': groove,
-  'hidden': hidden,
-  'inherit': inherit,
-  'initial': initial,
-  'inset': inset,
-  'none': none,
-  'outset': outset,
-  'ridge': ridge,
-  'unset': unset
-);
+/* outline-color */
 
-@each $name, $value in $border-styles {
-  .b-#{$name} {
-    border-style: #{$value};
-  }
-}
-
-$border-directions: (
-  't': top,
-  'b': bottom,
-  'r': right,
-  'l': left
-);
-
-@each $name, $value in $border-directions {
-  .b#{$name} {
-    @each $size, $prop in $border-sizes {
-      &-#{$size} {
-        border-#{$value}-width: #{$prop};
-        border-#{$value}-style: solid;
-        border-#{$value}-color: black;
-      }
-    }
-  }
-}
-
-@each $color, $shades in s.$colors {
+@each $color, $shades in v.$colors-ext {
   @each $shade, $value in $shades {
-    .b-#{$color}-#{$shade} {
-      border-color: #{$value};
+    .outline-#{$color}-#{$shade} {
+      outline-color: #{$value};
     }
   }
 }
 
-@each $name, $value in s.$colors-base {
-  .b-#{'' + $name} {
-    border-color: #{$value};
+@each $name, $value in v.$colors-base {
+  .outline-#{$name} {
+    outline-color: #{$value};
   }
 }
 
-$outline-widths: (
+/* outline-offset */
+
+$outline-offset: (
   '0': 0px,
   '1': 1px,
   '2': 2px,
@@ -211,17 +228,9 @@ $outline-widths: (
   '8': 8px
 );
 
-@each $name, $value in $outline-widths {
-  .outline-#{$name} {
-    outline-width: #{$value};
-  }
-}
-
-@each $color, $shades in s.$colors {
-  @each $shade, $value in $shades {
-    .outline-#{$color}-#{$shade} {
-      outline-color: #{$value};
-    }
+@each $name, $value in $outline-offset {
+  .outline-offset-#{$name} {
+    outline-offset: #{$value};
   }
 }
 
@@ -232,6 +241,28 @@ $outline-styles: (
   'hidden': hidden
 );
 
+@each $name, $value in $outline-styles {
+  .outline-#{$name} {
+    outline-style: #{$value};
+  }
+}
+
+/* outline-width */
+
+$outline-width: (
+  '0': 0px,
+  '1': 1px,
+  '2': 2px,
+  '4': 4px,
+  '8': 8px
+);
+
+@each $name, $value in $outline-width {
+  .outline-#{$name} {
+    outline-width: #{$value};
+  }
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -239,16 +270,4 @@ $outline-styles: (
 
 .outline {
   outline-style: solid;
-}
-
-@each $name, $value in $outline-styles {
-  .outline-#{$name} {
-    outline-style: #{$value};
-  }
-}
-
-@each $name, $value in $outline-widths {
-  .outline-offset-#{$name} {
-    outline-offset: #{$value};
-  }
 }

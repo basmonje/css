@@ -1,0 +1,164 @@
+@use '../config/variables' as v;
+
+/* margin */
+
+$spacing-options: (
+  't': top,
+  'b': bottom,
+  'r': right,
+  'l': left
+);
+
+@each $name, $value in v.$sizes-first {
+  .m-#{$name} {
+    margin: #{$value};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in v.$sizes-first {
+      .m-#{$device}-#{$size} {
+        margin: #{$value};
+      }
+    }
+  }
+}
+
+@each $name, $dire in $spacing-options {
+  .m#{$name} {
+    @each $name, $size in v.$sizes-first {
+      &-#{$name} {
+        margin-#{$dire}: #{$size};
+      }
+    }
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $position, $dire in $spacing-options {
+      .m#{$position}-#{$device} {
+        @each $size, $value in v.$sizes-first {
+          &-#{$size} {
+            margin-#{$dire}: #{$value};
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .mx-#{$name} {
+    margin-left: #{$value};
+    margin-right: #{$value};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in v.$sizes-first {
+      .mx-#{$device}-#{$size} {
+        margin-left: #{$value};
+        margin-right: #{$value};
+      }
+    }
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .my-#{$name} {
+    margin-top: #{$value};
+    margin-bottom: #{$value};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in v.$sizes-first {
+      .my-#{$device}-#{$size} {
+        margin-top: #{$value};
+        margin-bottom: #{$value};
+      }
+    }
+  }
+}
+
+/* padding */
+
+@each $name, $value in v.$sizes-first {
+  .p-#{$name} {
+    padding: #{$value};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in v.$sizes-first {
+      .p-#{$device}-#{$size} {
+        padding: #{$value};
+      }
+    }
+  }
+}
+
+@each $name, $dire in $spacing-options {
+  .p#{$name} {
+    @each $name, $size in v.$sizes-first {
+      &-#{$name} {
+        padding-#{$dire}: #{$size};
+      }
+    }
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $position, $dire in $spacing-options {
+      .p#{$position}-#{$device} {
+        @each $size, $val in v.$sizes-first {
+          &-#{$size} {
+            padding-#{$dire}: #{$val};
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .px-#{$name} {
+    padding-left: #{$value};
+    padding-right: #{$value};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $size, $value in v.$sizes-first {
+      .px-#{$device}-#{$size} {
+        padding-left: #{$value};
+        padding-right: #{$value};
+      }
+    }
+  }
+}
+
+@each $name, $value in v.$sizes-first {
+  .py-#{$name} {
+    padding-top: #{$value};
+    padding-bottom: #{$value};
+  }
+}
+
+@each $device, $valueBreakpoint in v.$breakpoints {
+  @media only screen and (min-width: $valueBreakpoint) {
+    @each $name, $value in v.$sizes-first {
+      .py-#{$device}-#{$name} {
+        padding-top: #{$value};
+        padding-bottom: #{$value};
+      }
+    }
+  }
+}
