@@ -1,4 +1,4 @@
-/* index components */
+/* components */
 
-@import './badge';
-@import './button';
+@use './badge' as *;
+@use './button' as *;

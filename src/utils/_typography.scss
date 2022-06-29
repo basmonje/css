@@ -79,7 +79,7 @@ $weight-sizes: (
 );
 
 @each $name, $value in $weight-sizes {
-  .text-#{$name} {
+  .text-w-#{$name} {
     font-weight: #{$value};
   }
 }

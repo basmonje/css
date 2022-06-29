@@ -1,9 +1,51 @@
-/* _button.scss */
+/* button */
+
+$buttons: (
+  'primary': (
+    'background': var(--clr-primary-400),
+    'color': var(--clr-white)
+  ),
+  'secondary': (
+    'background': var(--clr-secondary-400),
+    'color': var(--clr-white)
+  ),
+  'danger': (
+    'background': var(--clr-danger-400),
+    'color': var(--clr-white)
+  ),
+  'info': (
+    'background': var(--clr-info-400),
+    'color': var(--clr-white)
+  ),
+  'success': (
+    'background': var(--clr-success-400),
+    'color': var(--clr-white)
+  ),
+  'black': (
+    'background': var(--clr-black),
+    'color': var(--clr-white)
+  )
+);
+
+@each $button, $props in $buttons {
+  .btn-#{$button} {
+    background: map-get($props, 'background');
+    color: map-get($props, 'color');
+  }
+}
+
+@each $button, $props in $buttons {
+  .btn-outline-#{$button} {
+    border: 1px solid map-get($props, 'background') !important;
+    background: transparent;
+    color: map-get($props, 'background');
+  }
+}
 
 .btn {
   text-align: center;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.475rem 1rem;
   font-weight: 600;
   vertical-align: middle;
   user-select: none;
@@ -19,14 +61,6 @@
 
   &-upper {
     text-transform: uppercase;
-  }
-
-  &-r-1 {
-    border-radius: 8px;
-  }
-
-  &-r-2 {
-    border-radius: 100px;
   }
 
   &-sm {
@@ -114,31 +148,5 @@
       outline-style: solid;
       outline-color: var(--clr-dark-200);
     }
-  }
-
-  &-primary {
-    background-color: var(--clr-primary-500);
-    color: var(--clr-white);
-
-    &:active {
-      background-color: var(--clr-primary-400) !important;
-      outline-width: 2;
-      outline-style: solid;
-      outline-color: var(--clr-primary-200);
-    }
-
-    &:hover {
-      background-color: var(--clr-primary-600);
-    }
-  }
-
-  &-primary-light {
-    background-color: var(--clr-white);
-    box-shadow: var(--shadow-3);
-  }
-
-  &-primary-dark {
-    background-color: var(--clr-black);
-    color: var(--clr-white);
   }
 }

@@ -9,11 +9,19 @@
     .b-#{$color}-#{$shade} {
       border-color: #{$value};
     }
+
+    .b-hover-#{$color}-#{$shade}:hover {
+      border-color: #{$value};
+    }
   }
 }
 
 @each $name, $value in v.$colors-base {
   .b-#{$name} {
+    border-color: #{$value};
+  }
+
+  .b-hover-#{$name}:hover {
     border-color: #{$value};
   }
 }
@@ -166,7 +174,6 @@ $border-directions: (
   .b-#{$name} {
     border-width: #{$value};
     border-style: solid;
-    border-color: black;
   }
 }
 
@@ -176,7 +183,6 @@ $border-directions: (
       &-#{$size} {
         border-#{$value}-width: #{$prop};
         border-#{$value}-style: solid;
-        // border-#{$value}-color: black;
       }
     }
   }
@@ -188,8 +194,6 @@ $border-directions: (
     border-bottom-width: #{$value};
     border-top-style: solid;
     border-bottom-style: solid;
-    border-top-color: black;
-    border-bottom-color: black;
   }
 
   .bx-#{$name} {
@@ -197,8 +201,6 @@ $border-directions: (
     border-right-width: #{$value};
     border-left-style: solid;
     border-right-style: solid;
-    border-left-color: black;
-    border-right-color: black;
   }
 }
 

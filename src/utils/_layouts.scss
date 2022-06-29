@@ -28,7 +28,8 @@ $columns: (
   '9': 9,
   '10': 10,
   '11': 11,
-  '12': 12
+  '12': 12,
+  'auto': auto
 );
 
 @each $name, $value in $columns {

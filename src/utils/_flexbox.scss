@@ -201,7 +201,7 @@ $gap-scales: (
 @each $device, $valueBreakpoint in v.$breakpoints {
   @media only screen and (min-width: $valueBreakpoint) {
     @for $i from 1 through 12 {
-      .cols-#{device}-#{$i} {
+      .cols-#{$device}-#{$i} {
         grid-template-columns: repeat($i, minmax(0, 1fr));
       }
     }
