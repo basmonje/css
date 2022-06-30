@@ -1,12 +1,13 @@
 {
   "name": "@basmonje/css",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "SCSS Framework for personal works",
   "files": [
     "lib"
   ],
   "exports": {
     ".": "./lib/index.min.css",
+    "./base": "./lib/index.scss",
     "./dark": "./lib/dark.scss",
     "./components/*": "./lib/components/*.scss",
     "./utils/*": "./lib/utils/*.scss"
@@ -26,10 +27,11 @@
   },
   "scripts": {
     "watch": "sass -w src/index.scss lib/index.css --source-map",
-    "build": "rimraf lib && npm run build-sass && npm run build-autoprefix && npm run build-cleancss && npm run copy",
+    "build": "rimraf lib && npm run build-sass && npm run build-autoprefix && npm run build-cleancss && npm run copy && npm run build-after",
     "build-sass": "sass src/index.scss lib/index.css --no-source-map",
     "build-autoprefix": "postcss --use autoprefixer --no-map --output ./lib/index.css ./lib/index.css",
     "build-cleancss": "cleancss -o ./lib/index.min.css ./lib/index.css",
+    "build-after": "rimraf ./lib/index.css ./lib/index.map.css",
     "copy": "xcopy /e src lib"
   },
   "keywords": [
