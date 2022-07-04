@@ -1,7 +1,7 @@
 {
   "name": "@basmonje/css",
-  "version": "1.0.8",
-  "description": "SCSS Framework for personal works",
+  "version": "1.0.9",
+  "description": "A frontend SCSS framework for building responsive and scalable websites.",
   "files": [
     "lib"
   ],
