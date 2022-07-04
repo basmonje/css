@@ -148,7 +148,7 @@ $border-styles: (
 
 @each $name, $value in $border-styles {
   .b-#{$name} {
-    border-style: #{$value};
+    border-style: #{$value} !important;
   }
 }
 
