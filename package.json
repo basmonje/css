@@ -1,6 +1,6 @@
 {
   "name": "@basmonje/css",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Library of styles for educational purposes",
   "files": [
     "lib/*"
