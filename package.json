@@ -1,9 +1,9 @@
 {
   "name": "@basmonje/css",
-  "version": "1.0.9",
-  "description": "A frontend SCSS framework for building responsive and scalable websites.",
+  "version": "1.0.10",
+  "description": "Library of styles for educational purposes",
   "files": [
-    "lib"
+    "lib/*"
   ],
   "exports": {
     ".": "./lib/index.min.css",
@@ -41,7 +41,9 @@
   "devDependencies": {
     "autoprefixer": "10.4.7",
     "clean-css-cli": "5.6.0",
+    "postcss": "8.4.14",
     "postcss-cli": "9.1.0",
+    "postcss-sass": "0.5.0",
     "rimraf": "3.0.2",
     "sass": "1.52.2"
   },
@@ -50,5 +52,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "none"
+  },
+  "engines": {
+    "node": ">=12.13.0"
   }
 }

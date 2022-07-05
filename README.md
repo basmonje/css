@@ -2,7 +2,7 @@
   @basmonje/css
 </h1>
 
-> A frontend SCSS framework for building responsive and scalable websites.
+> Library of styles for educational purposes.
 
 ## Install 🪄
 
@@ -17,7 +17,7 @@ npm install --save @basmonje/css
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@basmonje/css@1.0.8/lib/index.min.css"
+  href="https://cdn.jsdelivr.net/npm/@basmonje/css@1.0.10/lib/index.min.css"
 />
 ```
 
